@@ -1,23 +1,371 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+  <style>
+    /* Noto Sans KR (부드러운 디자인을 위한 기본 폰트) */
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+    /* 기본 스타일 재정의: 부드럽고 다채로운 색감 적용 */
+    body { font-family: 'Noto Sans KR', sans-serif; line-height: 1.8; margin: 0; padding: 0; background: #f4f6f9; color: #333; }
+    header { background: #e0f2f1; padding: 40px 15px; text-align: center; border-bottom: 5px solid #004d40; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+    section { max-width: 900px; margin: 20px auto; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 6px 12px rgba(0,0,0,0.08); }
+    footer { max-width: 900px; margin: 20px auto; padding: 20px; text-align: center; color: #777; font-size: 0.9em; border-top: 1px solid #ddd; }
+
+    /* 헤더 및 제목 스타일 */
+    h1 { color: #004d40; font-size: 2.5em; font-weight: 700; margin-bottom: 10px; }
+    h2 { color: #00695c; font-size: 2em; border-bottom: 2px solid #b2dfdb; padding-bottom: 10px; margin-top: 30px; font-weight: 600; }
+    h3 { color: #00796b; font-size: 1.5em; margin-top: 20px; border-left: 4px solid #4db6ac; padding-left: 10px; }
+
+    /* 텍스트 가독성 향상 */
+    p { margin-bottom: 1em; text-align: justify; }
+    ul, ol { padding-left: 25px; margin-bottom: 1.5em; }
+    li { margin-bottom: 0.8em; }
+
+    /* 테이블 스타일 */
+    table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 20px 0; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; }
+    th, td { padding: 15px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+    th { background: #b2dfdb; color: #004d40; font-weight: 700; border-top: none; }
+    tr:nth-child(even) { background-color: #f9f9f9; }
+    tr:last-child td { border-bottom: none; }
+
+    /* CTA 버튼 스타일 (디자인 변경) */
+    .btn-cta {
+      display: inline-block;
+      padding: 15px 30px;
+      background: linear-gradient(135deg, #00796b, #004d40);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1em;
+      border-radius: 50px;
+      box-shadow: 0 6px 12px rgba(0, 121, 107, 0.3);
+      transition: all 0.3s ease;
+      text-align: center;
+      margin-top: 25px;
+      cursor: pointer;
+      border: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .btn-cta:hover {
+      background: linear-gradient(135deg, #004d40, #00796b);
+      box-shadow: 0 8px 16px rgba(0, 121, 107, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* 네비게이션 스타일 */
+    nav { max-width: 900px; margin: 20px auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); padding: 15px; }
+    nav ul { list-style: none; display: flex; justify-content: space-around; padding: 0; margin: 0; }
+    nav li a { color: #00796b; font-weight: 500; text-decoration: none; padding: 10px 15px; border-radius: 6px; transition: background-color 0.2s; }
+    nav li a:hover { background-color: #e0f2f1; text-decoration: none; }
+
+    /* 폼 스타일 */
+    form { background: #f9f9f9; padding: 25px; border-radius: 8px; border: 1px solid #ddd; }
+    label { display: block; margin-bottom: 8px; font-weight: 500; color: #555; }
+    input[type="text"], input[type="tel"], select, textarea {
+      width: calc(100% - 16px);
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 1em;
+    }
+    textarea { resize: vertical; }
+
+    /* 그래프 스타일 (Placeholder) */
+    .chart-placeholder { height: 250px; background-color: #e0f2f1; border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; font-weight: 500; color: #004d40; border: 1px dashed #00796b; }
+
+    /* 반응형 디자인 */
+    @media (max-width: 768px) {
+      body { padding: 10px; }
+      header, section, footer, nav { margin: 10px auto; padding: 15px; border-radius: 0; }
+      h1 { font-size: 2em; }
+      nav ul { flex-direction: column; }
+      nav li { margin-bottom: 10px; }
+      nav li a { display: block; text-align: center; }
+    }
+
+    /* 앵커 스타일 (숨김 처리) */
+    .anchor { display: block; position: relative; top: -80px; visibility: hidden; }
+
+    /* 기타 강조 요소 */
+    .highlight { background-color: #e0f2f1; padding: 10px; border-radius: 4px; display: inline-block; }
+    .note { margin-top: 20px; padding: 15px; background-color: #fffde7; border-left: 5px solid #ffc107; color: #555; }
+  </style>
+
+  <!-- Schema.org LocalBusiness 마크업(JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "상계동 인테리어 전문가 그룹",
+    "image": "https://도메인/상계동인테리어_메인.jpg",
+    "url": "https://도메인/상계동인테리어",
+    "telephone": "02-123-4567",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "서울 노원구 상계동 ○○로 ○○",
+      "addressLocality": "상계동",
+      "addressRegion": "서울",
+      "postalCode": "01700",
+      "addressCountry": "KR"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "상계동"
+    },
+    "description": "상계동 아파트 및 주택 인테리어 전문. 2026년 최신 트렌드 반영한 합리적인 비용의 리모델링 서비스. 노원구 전지역 출장 견적 가능."
+  }
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1><i class="fas fa-home"></i> 상계동 인테리어, 현명한 선택을 위한 가이드</h1>
+    <p>상계동 아파트, 빌라, 주택 리모델링 전문. 2026년 최신 트렌드와 합리적인 비용을 제안합니다.</p>
+    <button class="btn-cta" onclick="location.href='#contact'">무료 견적 상담 신청하기</button>
+  </header>
+
+  <nav aria-label="페이지 내 이동">
+    <ul>
+      <li><a href="#intro">인테리어 개요</a></li>
+      <li><a href="#cost-guide">비용 및 견적</a></li>
+      <li><a href="#process">진행 절차</a></li>
+      <li><a href="#local-analysis">상계동 지역 분석</a></li>
+      <li><a href="#portfolio">포트폴리오</a></li>
+      <li><a href="#contact">상담 문의</a></li>
+    </ul>
+  </nav>
+
+  <!-- 섹션 1: 인테리어 개요 및 상계동 특성 분석 -->
+  <section id="intro">
+    <span id="intro-anchor" class="anchor"></span>
+    <h2>상계동 인테리어, 왜 지역 전문가에게 맡겨야 할까요?</h2>
+    <p>상계동은 서울 노원구에 위치하며, 대규모 아파트 단지가 밀집되어 있는 주거지역입니다. 특히, 1980~1990년대에 건설된 <span class="highlight">상계동 주공아파트</span> 단지(주공 1단지부터 16단지)가 대부분을 차지하고 있어, 인테리어 수요가 매우 높습니다. 이러한 노후 아파트의 인테리어는 단순한 미관 개선을 넘어, 배관, 단열, 방수 등 주거 환경의 근본적인 문제 해결이 핵심입니다. 따라서 상계동 지역 특성과 아파트 구조에 대한 깊은 이해가 있는 전문가를 선택하는 것이 중요합니다.</p>
+    <p>노원구의 다른 주요 지역인 <span class="highlight">중계동 인테리어</span>와 <span class="highlight">하계동 인테리어</span> 역시 유사한 특성을 공유합니다. 중계동의 경우 학군 수요가 높아 자녀 교육 환경에 맞춘 인테리어가 선호되며, 하계동은 비교적 신축 아파트 단지도 혼재되어 있어 다양한 연령층의 요구를 충족시켜야 합니다. 저희 전문가 그룹은 노원구 전 지역의 특성을 완벽히 분석하여 맞춤형 솔루션을 제공합니다.</p>
+
+    <h3>상계동 아파트 인테리어 핵심 고려 사항</h3>
+    <ul>
+      <li><strong>노후 배관 교체:</strong> 30년 이상 된 아파트의 경우, 배관이 부식되어 녹물이 나오거나 누수 위험이 높습니다. 인테리어 시 반드시 전체 또는 부분 교체가 필요합니다.</li>
+      <li><strong>단열 및 방음:</strong> 겨울철 난방 효율을 높이기 위한 단열 공사와 층간 소음 문제를 해결하기 위한 방음 시공이 필수적입니다.</li>
+      <li><strong>법규 준수:</strong> 대규모 단지의 경우, 인테리어 공사 시 관리사무소에 신고하고 입주민 동의를 받아야 하는 경우가 많습니다. <span class="highlight">비내력벽 철거</span> 등 구조 변경은 허가를 받아야 합니다.</li>
+      <li><strong>지역 협력사:</strong> 상계동 인테리어 전문 업체는 <span class="highlight">상계동</span>, <span class="highlight">중계동</span>, <span class="highlight">하계동</span>, <span class="highlight">월계동</span>, <span class="highlight">공릉동</span>, <span class="highlight">창동</span>, <span class="highlight">도봉동</span> 등 인근 지역 공사 경험이 많아 소음이나 공사 일정 조율에 능숙합니다.</li>
+    </ul>
+  </section>
+
+  <!-- 섹션 2: 인테리어 비용 및 견적 가이드 -->
+  <section id="cost-guide">
+    <span id="cost-guide-anchor" class="anchor"></span>
+    <h2>2026년 상계동 아파트 인테리어 비용 가이드 (평균 견적 분석)</h2>
+    <p>인테리어 비용은 천차만별입니다. 특히 <span class="highlight">상계동 인테리어 비용</span>은 아파트 평형(py), 공사 범위(전체 vs. 부분), 자재 등급(고가 vs. 합리적), 노후 정도에 따라 크게 달라집니다. 저희는 2026년 상계동 인테리어 시장의 <span class="highlight">평균 가격</span>을 분석하여 합리적인 <span class="highlight">견적</span>을 제공합니다.</p>
+
+    <h3>1. 인테리어 비용을 결정하는 주요 요소</h3>
+    <p>인테리어 <span class="highlight">금액</span>을 산정할 때 반드시 고려해야 할 요소들입니다. 단순히 <span class="highlight">저렴한곳</span>이나 <span class="highlight">싼곳</span>만 찾기보다는, 투명한 견적을 제시하는 업체를 선택하는 것이 중요합니다.</p>
+    <ul>
+      <li><strong>공사 범위:</strong> 전체 리모델링(철거, 설비, 마감 포함)이냐, 부분 인테리어(도배, 장판, 싱크대 교체 등)냐에 따라 <span class="highlight">가격 차이점</span>이 큽니다.</li>
+      <li><strong>자재 등급:</strong> 벽지(실크 vs. 합지), 바닥재(강마루 vs. 온돌마루), 주방가구(브랜드 vs. 비브랜드), 창호(LG vs. 영림 등) 등 자재의 선택이 <span class="highlight">예상 비용</span>의 30% 이상을 좌우합니다.</li>
+      <li><strong>인건비:</strong> 2026년 기준 숙련된 기술자의 일당 상승과 주 52시간 근무제 등으로 인건비 비중이 증가하고 있습니다.</li>
+      <li><strong>철거 및 폐기물 처리비:</strong> 노후 아파트는 철거할 부분이 많아 폐기물 처리 비용이 추가로 발생합니다.</li>
+    </ul>
+
+    <h3>2. 상계동 아파트 평형별 인테리어 <span class="highlight">평균 견적</span> (2026년 기준)</h3>
+    <p>다음 표는 <span class="highlight">상계동 인테리어</span> 업체들의 <span class="highlight">평균 견적</span>을 바탕으로 작성된 참고용 자료입니다. 실제 견적은 현장 방문 후 정확한 측정을 통해 산출됩니다. <span class="highlight">내돈내산 후기</span>를 보면 자재 선택에 따라 편차가 크다는 것을 알 수 있습니다.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>평형 (py)</th>
+          <th>추천 인테리어 유형</th>
+          <th>합리적인 <span class="highlight">예상 비용</span> 범위 (만원)</th>
+          <th>고급형 <span class="highlight">예상 비용</span> 범위 (만원)</th>
+          <th>특징 및 참고 사항</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>20평대 (약 66㎡)</td>
+          <td>실속형 전체 리모델링</td>
+          <td>1,800 ~ 2,500만원</td>
+          <td>3,000 ~ 4,000만원</td>
+          <td>상계동 주공 1단지, 7단지, 10단지 등 소형 평수 다수.</td>
+        </tr>
+        <tr>
+          <td>30평대 (약 99㎡)</td>
+          <td>부분 리모델링 + 확장</td>
+          <td>2,500 ~ 3,500만원</td>
+          <td>4,000 ~ 6,000만원</td>
+          <td>상계동 주공 3단지, 5단지 등 중형 평수. 거실 확장 문의 많음.</td>
+        </tr>
+        <tr>
+          <td>40평대 이상 (약 132㎡)</td>
+          <td>고급 자재 사용, 맞춤 디자인</td>
+          <td>3,500 ~ 5,000만원</td>
+          <td>6,000만원 이상</td>
+          <td>상계동 주공 13단지, 중계동 롯데캐슬 등 대형 평수.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>3. 인테리어 비용 절감 팁: <span class="highlight">저렴한곳</span>을 찾아서</h3>
+    <p>무조건 <span class="highlight">싼곳</span>을 찾기보다는, 불필요한 비용을 절감하는 것이 중요합니다. <span class="highlight">상계동 인테리어</span> 업체 선정 시 다음 사항을 고려해 보세요.</p>
+    <ul>
+      <li><strong>자재 직거래:</strong> 업체가 자재 마진을 적게 붙이는지 확인하세요. 소비자가 직접 자재를 <span class="highlight">비교</span>하고 선택하는 것도 좋은 방법입니다.</li>
+      <li><strong>부분 공사 활용:</strong> 전체 리모델링 대신 도배, 장판, 싱크대 등 꼭 필요한 부분만 교체하는 <span class="highlight">부분 인테리어</span>를 고려합니다.</li>
+      <li><strong>비성수기 이용:</strong> 인테리어 성수기(봄, 가을)를 피해 겨울철에 공사를 진행하면 인건비 및 공사비 할인을 받을 수 있는 <span class="highlight">장점</span>이 있습니다.</li>
+    </ul>
+
+    <div class="note"><strong>주의사항:</strong> 지나치게 저렴한 견적은 하청 재하청 구조로 이어져 부실 시공의 원인이 될 수 있습니다. <span class="highlight">상계동 인테리어</span> 업체들의 <span class="highlight">내돈내산 후기</span>를 꼼꼼히 확인하고, 계약 전 시공 범위를 명확히 문서화해야 합니다.</div>
+
+    <button class="btn-cta" onclick="location.href='#contact'">맞춤형 비용 견적 문의</button>
+  </section>
+
+  <!-- 섹션 3: 인테리어 진행 절차 -->
+  <section id="process">
+    <span id="process-anchor" class="anchor"></span>
+    <h2>상계동 아파트 인테리어 진행 절차와 체크리스트</h2>
+    <p>인테리어는 단순히 시공만 하는 것이 아니라, 기획 단계부터 사후 관리까지 체계적인 프로세스가 필요합니다. 저희는 상계동 지역민들이 인테리어를 성공적으로 마칠 수 있도록 다음의 절차를 제안합니다.</p>
+
+    <h3>1. 기획 단계: <span class="highlight">인테리어 견적 비교</span> 및 업체 선정</h3>
+    <p>이 단계에서 <span class="highlight">상계동 인테리어</span> 업체 3곳 이상의 <span class="highlight">견적</span>을 받아 <span class="highlight">비교</span>하는 것이 중요합니다. <span class="highlight">장단점</span>을 명확히 파악하고, 포트폴리오를 통해 시공 능력과 디자인 감각을 확인하세요. 특히 노후 아파트 공사 경험이 많은지 확인해야 합니다.</p>
+
+    <h3>2. 디자인 및 계약 단계: 맞춤형 디자인 확정</h3>
+    <p>고객의 라이프스타일을 반영한 디자인 제안을 받고, 자재를 결정합니다. 공사 범위, 기간, <span class="highlight">비용</span>, A/S 기간 등을 명확히 명시한 계약서를 작성합니다. <span class="highlight">상계동</span> 아파트의 경우, 소음으로 인한 이웃 민원을 방지하기 위한 공사 시간 명시도 중요합니다.</p>
+
+    <h3>3. 시공 단계: 노하우가 집약된 전문 시공</h3>
+    <p><strong>주요 공정 순서:</strong> ① 철거 ② 설비(배관, 난방) ③ 목공사 ④ 전기 공사 ⑤ 타일 공사 ⑥ 도장 공사 ⑦ 바닥재 ⑧ 도배 ⑨ 가구(싱크대, 붙박이장) ⑩ 조명 및 스위치 설치 ⑪ 최종 마감 및 청소. 각 공정별로 전문가가 투입되며, <span class="highlight">상계동</span> 지역 특성에 맞게 공사를 진행합니다.</p>
+
+    <h3>4. 사후 관리 및 A/S</h3>
+    <p>공사 완료 후 1~2년 동안 발생할 수 있는 하자에 대한 무상 A/S 정책이 있는지 확인해야 합니다. 이는 <span class="highlight">상계동 인테리어</span> 업체 <span class="highlight">순위</span>를 결정하는 중요한 요소 중 하나입니다. 신뢰할 수 있는 업체는 하자 발생 시에도 책임감 있게 대응합니다.</p>
+
+    <div class="note"><strong>체류시간 확보를 위한 추가 요소:</strong><br/>
+    <p><strong>인테리어 자가 진단 체크리스트:</strong></p>
+    <form style="background:none; border:none; padding:0;">
+        <p><strong>[인테리어 자가 진단 1]</strong> 현재 거주하시는 아파트가 20년 이상 되었습니까?</p>
+        <input type="radio" id="q1_yes" name="q1" value="yes"><label for="q1_yes"> 예</label>
+        <input type="radio" id="q1_no" name="q1" value="no"><label for="q1_no"> 아니오</label>
+
+        <p><strong>[인테리어 자가 진단 2]</strong> 인테리어 예산을 정할 때, 노후 배관 교체 비용을 고려했습니까?</p>
+        <input type="radio" id="q2_yes" name="q2" value="yes"><label for="q2_yes"> 예</label>
+        <input type="radio" id="q2_no" name="q2" value="no"><label for="q2_no"> 아니오</label>
+
+        <p><strong>[인테리어 자가 진단 3]</strong> 원하는 인테리어 스타일(예: 미니멀, 북유럽, 클래식)을 결정했습니까?</p>
+        <input type="text" placeholder="스타일 입력" style="width:calc(100% - 16px); padding:8px; margin-top:5px;"/>
+    </form>
+    </div>
+  </section>
+
+  <!-- 섹션 4: 상계동 지역별 인테리어 특화 분석 -->
+  <section id="local-analysis">
+    <span id="local-analysis-anchor" class="anchor"></span>
+    <h2>상계동 세부 지역별 인테리어 특화 분석: 주공단지, 벽산아파트, 현대아파트</h2>
+    <p>상계동 내에서도 세부 지역에 따라 인테리어 접근 방식이 달라집니다. <span class="highlight">상계동 주공아파트</span> 단지는 재건축 이슈와 함께 리모델링 수요가 높으며, <span class="highlight">벽산아파트</span>, <span class="highlight">현대아파트</span> 등 특정 단지들은 고유의 구조적 특징을 가지고 있습니다.</p>
+
+    <h3>1. 상계동 주공아파트 인테리어 (재건축을 대비한 전략)</h3>
+    <p>상계 주공 1단지, 2단지, 3단지, 4단지, 5단지, 6단지, 7단지, 8단지, 9단지, 10단지, 11단지, 12단지, 13단지, 14단지, 15단지, 16단지 등 상계 주공 단지는 노후도가 높아 <span class="highlight">재건축</span>이 논의되고 있습니다. 따라서 거주 기간에 맞춰 인테리어 전략을 세워야 합니다. 재건축이 임박한 단지의 경우, <span class="highlight">최소 비용</span>으로 실속형 인테리어를 진행하거나, 반대로 10년 이상 거주 계획이라면 과감한 투자를 하는 것이 합리적입니다.</p>
+
+    <h3>2. 상계동 기타 주요 아파트 인테리어</h3>
+    <p>상계동 <span class="highlight">보람아파트</span>, <span class="highlight">상계주공16단지</span>, <span class="highlight">상계은빛2단지</span>, <span class="highlight">상계벽산아파트</span>, <span class="highlight">상계현대아파트</span> 등 다양한 단지의 인테리어 수요가 있습니다. 각 단지의 평형대, 준공 연도, 입주민 성향을 고려하여 맞춤형 디자인을 제안합니다.</p>
+
+    <h3>3. 상계동 인테리어 트렌드 분석 (2026년)</h3>
+    <div class="chart-placeholder">2026년 상계동 인테리어 트렌드 (가족 구성원별 선호 디자인 그래프)</div>
+    <p>2026년 <span class="highlight">상계동 인테리어</span> 트렌드는 "미니멀리즘과 실용성"에 초점이 맞춰져 있습니다. 특히 자녀가 있는 가구는 수납공간 확보와 청소가 용이한 마감재를 선호합니다. <span class="highlight">상계동</span> 지역의 <span class="highlight">인테리어 장점</span>은 다양한 <span class="highlight">업체 순위</span>가 존재하여 <span class="highlight">비교</span>가 용이하다는 것입니다.</p>
+
+    <div class="note"><strong>지역 키워드 상세 분석:</strong><br/>
+    <p>상계동은 <span class="highlight">노원역 인테리어</span>, <span class="highlight">마들역 인테리어</span>, <span class="highlight">수락산역 인테리어</span> 등 지하철 역세권별로 인테리어 수요가 집중되어 있습니다. <span class="highlight">상계동</span> 외에도 <span class="highlight">중계동</span>, <span class="highlight">하계동</span>, <span class="highlight">공릉동</span>, <span class="highlight">월계동</span>, <span class="highlight">창동</span>, <span class="highlight">방학동</span>, <span class="highlight">도봉동</span>, <span class="highlight">쌍문동</span>, <span class="highlight">수유동</span> 등 <span class="highlight">강북구</span>와 <span class="highlight">도봉구</span> 지역까지 인테리어 전문 서비스를 제공합니다. <span class="highlight">인테리어 견적 비교</span> 시 <span class="highlight">상계동</span> 지역 특화 업체를 찾는 것이 <span class="highlight">장점</span>이 많습니다.</p>
+    </div>
+  </section>
+
+  <!-- 섹션 5: 인테리어 포트폴리오 (샘플 제공) -->
+  <section id="portfolio">
+    <span id="portfolio-anchor" class="anchor"></span>
+    <h2>상계동 인테리어 포트폴리오 (샘플)</h2>
+    <p>실제 <span class="highlight">상계동</span> 아파트 인테리어 시공 사례를 통해 저희의 기술력과 디자인 감각을 확인해 보세요. <span class="highlight">내돈내산 후기</span>를 바탕으로 엄선된 시공사례입니다.</p>
+    <h3>1. 시공 사례 1: 상계 주공 5단지 20평형 (확장형 미니멀리즘)</h3>
+    <p><strong>주요 공사 내용:</strong> 거실 확장, 주방 구조 변경, 전체 창호 교체, 단열 보강. 좁은 공간을 넓게 활용하기 위한 <span class="highlight">미니멀 디자인</span> 적용. <span class="highlight">평균 비용</span>보다 조금 높은 수준에서 진행되었으나 고객 만족도가 높았습니다.</p>
+    <h3>2. 시공 사례 2: 상계 벽산아파트 30평형 (클래식 모던)</h3>
+    <p><strong>주요 공사 내용:</strong> 톤 다운된 컬러와 몰딩으로 클래식한 분위기 연출. 2026년 트렌드인 스마트 홈 시스템 도입. <span class="highlight">인테리어 비용</span>은 <span class="highlight">예상</span> 범위 내에서 진행되었습니다.</p>
+    <h3>3. 시공 사례 3: 상계동 빌라 1층 주택 (부분 리모델링)</h3>
+    <p><strong>주요 공사 내용:</strong> 습도 및 방수 문제 해결을 위한 바닥 및 벽체 공사, 곰팡이 방지 시공. <span class="highlight">저렴한곳</span>을 찾던 고객에게 합리적인 솔루션 제공.</p>
+
+    <div class="note"><strong>신뢰성 확보를 위한 외부 링크:</strong><br/>
+    <p>인테리어 계약 시 소비자 보호 규정을 확인하세요: <a href="https://www.ftc.go.kr" target="_blank">공정거래위원회 (www.ftc.go.kr)</a><br/>
+    노후 아파트 리모델링 관련 정보: <a href="https://namu.wiki/w/%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4" target="_blank">나무위키 - 인테리어</a><br/>
+    아파트 관리 규약 확인: <a href="https://www.k-apt.go.kr" target="_blank">공동주택관리정보시스템 (k-apt.go.kr)</a></p>
+    </div>
+  </section>
+
+  <!-- 섹션 6: 자주 묻는 질문 및 비교 분석 -->
+  <section id="faq">
+    <span id="faq-anchor" class="anchor"></span>
+    <h2>자주 묻는 질문 (FAQ) 및 업체 <span class="highlight">장단점 비교</span></h2>
+    <p><strong>Q1: <span class="highlight">상계동 인테리어</span> 업체 <span class="highlight">순위</span>는 어떻게 되나요?</strong><br/>
+    A: 인테리어 업체 순위는 단순히 규모나 광고비로 정해지지 않습니다. 저희는 <span class="highlight">상계동</span> 지역에서 <span class="highlight">내돈내산 후기</span>가 좋고, 투명한 <span class="highlight">견적</span>을 제공하며, A/S가 확실한 업체를 <span class="highlight">추천</span>합니다. 특히 <span class="highlight">노원구</span> 지역에서 오랜 기간 운영한 업체가 좋습니다.</p>
+    <p><strong>Q2: <span class="highlight">인테리어 비용</span> <span class="highlight">평균</span>보다 <span class="highlight">저렴한곳</span>을 찾으면 안 되나요?</strong><br/>
+    A: <span class="highlight">저렴한곳</span>을 찾는 것도 중요하지만, 인테리어는 자재 등급과 인건비가 대부분을 차지합니다. <span class="highlight">평균</span>보다 지나치게 <span class="highlight">싼곳</span>은 저급 자재를 사용하거나, A/S를 기피하는 <span class="highlight">단점</span>이 있을 수 있습니다. <span class="highlight">비교</span>를 통해 합리적인 <span class="highlight">가격</span>을 제시하는 업체를 찾으세요.</p>
+    <p><strong>Q3: <span class="highlight">인테리어 장점</span>과 <span class="highlight">단점</span>은 무엇인가요?</strong><br/>
+    A: <span class="highlight">장점</span>은 주거 만족도 향상, 노후 문제 해결, 부동산 가치 상승입니다. <span class="highlight">단점</span>은 공사 기간 동안의 불편함과 예상치 못한 <span class="highlight">추가 비용</span> 발생 가능성입니다. 꼼꼼한 사전 계획으로 <span class="highlight">단점</span>을 최소화할 수 있습니다.</p>
+
+    <h3>상계동 인테리어 <span class="highlight">업체 유형별 <span class="highlight">장단점 비교</span></span></h3>
+    <table>
+      <thead>
+        <tr>
+          <th>유형</th>
+          <th><span class="highlight">장점</span></th>
+          <th><span class="highlight">단점</span></th>
+          <th><span class="highlight">추천</span> 대상</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>대형 인테리어 브랜드 (한샘, 리바트 등)</td>
+          <td>브랜드 신뢰성, 체계적인 A/S, 디자인 전문성</td>
+          <td>높은 <span class="highlight">가격</span>, 복잡한 커뮤니케이션, 본사 중심의 제한된 자재</td>
+          <td>예산이 넉넉하고 브랜드 가치를 중요시하는 고객</td>
+        </tr>
+        <tr>
+          <td>지역 기반 소규모 전문 업체 (저희와 같은 업체)</td>
+          <td>합리적인 <span class="highlight">비용</span>, 유연한 디자인, 빠른 현장 대응, 지역 특화 노하우</td>
+          <td>업체별 시공 능력 차이 존재, A/S는 업체 규모에 따라 상이</td>
+          <td>합리적인 <span class="highlight">가격</span>에 맞춤형 <span class="highlight">상계동 인테리어</span>를 원하는 고객</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>저희는 <span class="highlight">상계동 인테리어</span> 분야에서 <span class="highlight">내돈내산 후기</span>가 좋으며, <span class="highlight">평균 비용</span>보다 <span class="highlight">저렴한곳</span>을 찾으시는 분들에게도 만족스러운 결과를 드릴 수 있도록 투명한 견적을 제시합니다.</p>
+  </section>
+
+  <!-- 섹션 7: 상담 및 견적 문의 -->
+  <section id="contact">
+    <span id="contact-anchor" class="anchor"></span>
+    <h2>상계동 인테리어 실시간 견적 상담 문의</h2>
+    <p>인테리어는 평생 거주할 공간에 대한 투자입니다. 2026년 <span class="highlight">상계동</span> 인테리어 <span class="highlight">트렌드</span>와 <span class="highlight">비용</span>에 대해 궁금한 점이 있다면 언제든지 문의하세요. 고객님의 라이프스타일을 반영한 맞춤형 솔루션을 제안해 드립니다. <span class="highlight">인테리어 견적 비교</span> 시 저희와 함께하세요.</p>
+
+    <form action="/submit" method="POST" style="max-width:600px; margin:auto;">
+      <h3><i class="fas fa-edit"></i> 무료 견적 상담 신청서</h3>
+      <label for="name">이름<span style="color:red;">*</span></label><br />
+      <input type="text" id="name" name="name" required placeholder="예: 홍길동" />
+
+      <label for="phone">연락처<span style="color:red;">*</span></label><br />
+      <input type="tel" id="phone" name="phone" required placeholder="010-1234-5678" pattern="[0-9\-]+" />
+
+      <label for="address">현재 주소 및 아파트명<span style="color:red;">*</span></label><br />
+      <input type="text" id="address" name="address" required placeholder="예: 상계동 주공 5단지 101동 101호" />
+
+      <label for="move-type">인테리어 유형<span style="color:red;">*</span></label><br />
+      <select id="move-type" name="move_type" required>
+        <option value="">선택하세요</option>
+        <option value="전체리모델링">전체 리모델링 (20평대)</option>
+        <option value="전체리모델링_중대형">전체 리모델링 (30평대 이상)</option>
+        <option value="부분인테리어">부분 인테리어 (주방/욕실/바닥 등)</option>
+        <option value="사무실">상업 공간 인테리어 (사무실/상가)</option>
+      </select>
+
+      <label for="preferred-date">상담 희망일 (2026년 기준)</label><br />
+      <input type="date" id="preferred-date" name="preferred_date" placeholder="예: 2026-03-15" />
+
+      <label for="project-description">추가 요청 사항 및 예산 범위</label><br />
+      <textarea id="project-description" name="project_description" rows="5" placeholder="예: 3000만원 예산, 거실 확장 희망, 2월 공사 시작 희망 등"></textarea>
+
+      <button type="submit" class="btn-cta">견적 문의 보내기</button>
+    </form>
+  </section>
+
+
+  
